@@ -1,0 +1,17 @@
+#!/bin/bash -l
+
+#PBS -N mcmonty
+#PBS -l walltime=2:00:00
+#PBS -l select=1:ncpus=16:mem=120G
+#PBS -j oe
+
+cd $PBS_O_WORKDIR
+
+module load R/3.2.4_gcc
+# let the R parallel library know it has 16 cores available
+export MC_CORES=16
+# ensure external libraries called by threads don't utilise additional parallelism
+export OMP_NUM_THREADS=1
+
+# run the multicore montyhall code and save only the output to the .out file
+R CMD BATCH --slave ./mcmontyhall.R mcmonty.out
