@@ -30,7 +30,7 @@ In your R code you can retrieve this `MC_CORES` value with:
 ncores <- getOption("mc.cores", 2L)
 ```
 
-**The method illustrated in this repository***, call the `mclapply()` function. This uses the value in `MC_CORES` by default to determine how many cores to use, and parallelises the vector input across these cores. For example
+**The method illustrated in this repository**, calls the `mclapply()` function. This uses the value in `MC_CORES` by default to determine how many cores to use, and parallelises the vector input across these cores. For example
 ```
 result=mclapply(a_vector, FUN = your_parallel_function) 
 ```
